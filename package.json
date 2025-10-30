@@ -26,12 +26,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/commit-ai.git"
+    "url": "https://github.com/ismailalammar/commit-ai.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/commit-ai/issues"
+    "url": "https://github.com/ismailalammar/commit-ai/issues"
   },
-  "homepage": "https://github.com/yourusername/commit-ai#readme",
+  "homepage": "https://github.com/ismailalammar/commit-ai#readme",
   "engines": {
     "node": ">=14.0.0"
   },

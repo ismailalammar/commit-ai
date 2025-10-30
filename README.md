@@ -64,6 +64,7 @@ npm install -g commit-ai
 ```
 
 Then set your API key as an environment variable:
+
 ```bash
 export ANTHROPIC_API_KEY=sk-ant-xxxxx
 ```
@@ -84,7 +85,7 @@ For contributing or local development:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/commit-ai.git
+git clone https://github.com/ismailalammar/commit-ai.git
 cd commit-ai
 
 # Install dependencies
@@ -130,6 +131,7 @@ commit-ai
 ### Examples
 
 **Python Project:**
+
 ```bash
 cd my-python-project
 git add app.py
@@ -137,6 +139,7 @@ commit-ai
 ```
 
 **Spring Boot Project:**
+
 ```bash
 cd my-spring-boot-app
 git add src/
@@ -144,6 +147,7 @@ commit-ai
 ```
 
 **JavaScript/Node.js Project:**
+
 ```bash
 cd my-node-app
 git add index.js
@@ -183,6 +187,7 @@ Do you want to commit with this message? (y/n): y
 **The tool is free.** You only pay for Claude API usage:
 
 Using Claude 3.5 Haiku:
+
 - **Cost per commit**: ~$0.001-0.002
 - **1,000 commits**: ~$1-2
 - **Speed**: ~1-2 seconds
@@ -191,6 +196,7 @@ Using Claude 3.5 Haiku:
 **Get $5 free credits** at [console.anthropic.com](https://console.anthropic.com)
 
 **Compared to Claude Sonnet 4:**
+
 - 99% cheaper
 - 2-3x faster
 - Same quality for this use case
@@ -200,18 +206,21 @@ Using Claude 3.5 Haiku:
 ## Why commit-ai?
 
 ### vs Manual Writing
+
 - ✅ 10x faster
 - ✅ Consistent quality
 - ✅ Follows best practices
 - ✅ Never forget important details
 
 ### vs GitHub Copilot
+
 - ✅ 100x cheaper per commit
 - ✅ Open source (customize it!)
 - ✅ Works without IDE
 - ✅ Focused specifically on commits
 
 ### vs ChatGPT Copy-Paste
+
 - ✅ No context switching
 - ✅ Stays in terminal
 - ✅ One command vs. multiple steps
@@ -248,16 +257,19 @@ This project includes comprehensive unit and integration tests using Jest.
 ### Running Tests
 
 Run all tests:
+
 ```bash
 npm test
 ```
 
 Run tests in watch mode (useful during development):
+
 ```bash
 npm run test:watch
 ```
 
 Run tests with coverage report:
+
 ```bash
 npm run test:coverage
 ```
@@ -265,6 +277,7 @@ npm run test:coverage
 ### Test Coverage
 
 The test suite covers:
+
 - Environment variable validation
 - Git diff retrieval and error handling
 - Claude API interaction and error handling
@@ -277,6 +290,7 @@ The test suite covers:
 ### Test Structure
 
 Tests are organized in `index.test.js`:
+
 - **Environment validation**: Checks for API key presence
 - **getStagedDiff functionality**: Tests git diff operations
 - **generateCommitMessage functionality**: Tests AI message generation
@@ -291,6 +305,7 @@ Tests are organized in `index.test.js`:
 ## Roadmap
 
 Current features:
+
 - [x] AI-powered commit messages
 - [x] Multi-language support
 - [x] Fast generation (~2s)
@@ -298,6 +313,7 @@ Current features:
 - [x] Comprehensive test suite
 
 Coming soon:
+
 - [ ] PR description generation
 - [ ] Custom commit templates
 - [ ] Team conventions support
@@ -306,7 +322,7 @@ Coming soon:
 - [ ] Commit message history/learning
 - [ ] Support for commit message editing before confirmation
 
-Want a feature? [Open an issue](https://github.com/yourusername/commit-ai/issues)!
+Want a feature? [Open an issue](https://github.com/ismailalammar/commit-ai/issues)!
 
 ---
 
@@ -352,25 +368,33 @@ A: Only git diffs (changes) are sent to Claude API, not your entire codebase. An
 ## Troubleshooting
 
 ### "ANTHROPIC_API_KEY is not set"
+
 Make sure you've set the API key:
+
 ```bash
 export ANTHROPIC_API_KEY=sk-ant-xxxxx
 ```
+
 Or create a `.env` file with the key.
 
 ### "No staged changes found"
+
 You need to stage your changes first:
+
 ```bash
 git add <files>
 ```
 
 ### "Not a git repository"
+
 Make sure you're in a git repository:
+
 ```bash
 git init
 ```
 
 ### API errors
+
 - Check your API key is valid
 - Ensure you have credits in your Anthropic account
 - Check your internet connection
@@ -406,6 +430,7 @@ Contributions are welcome! 🎉
 6. Open a Pull Request
 
 **Ideas for contributions:**
+
 - Add support for custom commit templates
 - Implement conventional commit format options
 - Add configuration file support (.commit-ai.json)
@@ -421,7 +446,7 @@ Contributions are welcome! 🎉
 
 If commit-ai saves you time, give it a star! It helps others discover the tool.
 
-[⭐ Star on GitHub](https://github.com/yourusername/commit-ai)
+[⭐ Star on GitHub](https://github.com/ismailalammar/commit-ai)
 
 ---
 
@@ -444,12 +469,12 @@ Free to use, modify, and distribute. See [LICENSE](LICENSE) file for details.
 ## Links
 
 - [npm package](https://www.npmjs.com/package/commit-ai)
-- [GitHub repository](https://github.com/yourusername/commit-ai)
-- [Issue tracker](https://github.com/yourusername/commit-ai/issues)
+- [GitHub repository](https://github.com/ismailalammar/commit-ai)
+- [Issue tracker](https://github.com/ismailalammar/commit-ai/issues)
 - [Anthropic API docs](https://docs.anthropic.com/)
 
 ---
 
 **Made with ❤️ by developers, for developers**
 
-*Stop writing "fixed stuff" commits. Start using commit-ai.* ✨
+_Stop writing "fixed stuff" commits. Start using commit-ai._ ✨
