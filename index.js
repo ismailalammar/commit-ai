@@ -26,7 +26,9 @@ async function getStagedDiff() {
 }
 
 async function generateCommitMessage(diff) {
-  console.log('Generating commit message...\n');
+  console.log('Generating commit message with Claude Haiku...\n');
+
+  const startTime = Date.now();
 
   try {
     const message = await anthropic.messages.create({
@@ -50,6 +52,9 @@ Respond with ONLY the commit message, no additional commentary or formatting.`
         }
       ]
     });
+
+    const duration = ((Date.now() - startTime) / 1000).toFixed(2);
+    console.log(`⚡ Generated in ${duration}s\n`);
 
     return message.content[0].text.trim();
   } catch (error) {
