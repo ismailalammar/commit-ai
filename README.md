@@ -25,7 +25,7 @@ Stop struggling with commit messages. Let AI write clear, professional commits b
 
 ```bash
 # 1. Install globally
-npm install -g commit-ai
+npm install -g @ismailalammar/commit-ai
 
 # 2. Get your API key from https://console.anthropic.com
 export ANTHROPIC_API_KEY=sk-ant-xxxxx
@@ -60,7 +60,7 @@ That's it! ✨
 Install once, use anywhere in any project:
 
 ```bash
-npm install -g commit-ai
+npm install -g @ismailalammar/commit-ai
 ```
 
 Then set your API key as an environment variable:
