@@ -2,9 +2,9 @@
 
 🤖 AI-powered git commit messages in seconds. Works with any programming language.
 
-[![npm version](https://badge.fury.io/js/commit-ai.svg)](https://www.npmjs.com/package/commit-ai)
+[![npm version](https://badge.fury.io/js/commit-ai.svg)](https://www.npmjs.com/package/@ismailalammar/commit-ai)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Downloads](https://img.shields.io/npm/dm/commit-ai.svg)](https://www.npmjs.com/package/commit-ai)
+[![Downloads](https://img.shields.io/npm/dm/commit-ai.svg)](https://www.npmjs.com/package/@ismailalammar/commit-ai)
 
 ## Demo
 
