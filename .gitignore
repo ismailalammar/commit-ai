@@ -3,6 +3,7 @@ node_modules/
 .DS_Store
 coverage/
 *.log
+*.py
 
 demo.cast
 demo.mp4
