@@ -1,12 +1,29 @@
 # commit-ai
 
+[![npm version](https://badge.fury.io/js/commit-ai.svg)](https://www.npmjs.com/package/commit-ai)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Downloads](https://img.shields.io/npm/dm/commit-ai.svg)](https://www.npmjs.com/package/commit-ai)
+
 A simple CLI tool that generates git commit messages using Claude AI. Works with any programming language - Python, Java, JavaScript, Go, and more!
+
+## Quick Start
+
+```bash
+# Install globally
+npm install -g commit-ai
+
+# Set your API key (get it from https://console.anthropic.com)
+export ANTHROPIC_API_KEY=sk-ant-xxxxx
+
+# Use it!
+cd your-project
+git add .
+commit-ai
+```
 
 ## Demo
 
 ![commit-ai demo](demo.gif)
-
-> **Note**: Demo coming soon! See [DEMO_RECORDING.md](DEMO_RECORDING.md) for instructions on creating the demo.
 
 ## Features
 
@@ -28,6 +45,7 @@ npm install -g commit-ai
 ```
 
 Then set your API key as an environment variable:
+
 ```bash
 export ANTHROPIC_API_KEY=sk-ant-xxxxx
 ```
@@ -89,6 +107,7 @@ commit-ai
 ### Examples
 
 **Python Project:**
+
 ```bash
 cd my-python-project
 git add app.py
@@ -96,6 +115,7 @@ commit-ai
 ```
 
 **Spring Boot Project:**
+
 ```bash
 cd my-spring-boot-app
 git add src/
@@ -103,6 +123,7 @@ commit-ai
 ```
 
 **JavaScript/Node.js Project:**
+
 ```bash
 cd my-node-app
 git add index.js
@@ -168,11 +189,13 @@ ANTHROPIC_API_KEY=sk-ant-xxxxx
 ## Cost Information
 
 Using Claude 3.5 Haiku:
+
 - **Cost per commit**: ~$0.001-0.002
 - **Speed**: ~1-2 seconds
 - **Quality**: Excellent for commit messages
 
 Compared to Claude Sonnet 4:
+
 - 99% cheaper
 - 2-3x faster
 - Same quality for this use case
@@ -184,16 +207,19 @@ This project includes comprehensive unit and integration tests using Jest.
 ### Running Tests
 
 Run all tests:
+
 ```bash
 npm test
 ```
 
 Run tests in watch mode (useful during development):
+
 ```bash
 npm run test:watch
 ```
 
 Run tests with coverage report:
+
 ```bash
 npm run test:coverage
 ```
@@ -201,6 +227,7 @@ npm run test:coverage
 ### Test Coverage
 
 The test suite covers:
+
 - Environment variable validation
 - Git diff retrieval and error handling
 - Claude API interaction and error handling
@@ -213,6 +240,7 @@ The test suite covers:
 ### Test Structure
 
 Tests are organized in [index.test.js](index.test.js):
+
 - **Environment validation**: Checks for API key presence
 - **getStagedDiff functionality**: Tests git diff operations
 - **generateCommitMessage functionality**: Tests AI message generation
@@ -243,23 +271,41 @@ npm login
 npm publish
 ```
 
+## FAQ
+
+**Q: Is my code secure?**
+A: Only git diffs (changes) are sent to Claude API, not your entire codebase. Anthropic doesn't store or train on your data.
+
+**Q: How much does it cost?**
+A: The tool is free and open source. You pay Anthropic directly for API usage (~$0.001-0.002/commit). Your first $5 of credits are free.
+
+**Q: Can I customize the commit message format?**
+A: Not yet, but you can fork and modify the prompt in the code. Custom formats are planned for future releases.
+
 ## Troubleshooting
 
 ### "ANTHROPIC_API_KEY is not set"
+
 Make sure you've set the API key:
+
 ```bash
 export ANTHROPIC_API_KEY=sk-ant-xxxxx
 ```
+
 Or create a `.env` file with the key.
 
 ### "No staged changes found"
+
 You need to stage your changes first:
+
 ```bash
 git add <files>
 ```
 
 ### "Not a git repository"
+
 Make sure you're in a git repository:
+
 ```bash
 git init
 ```
