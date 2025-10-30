@@ -1,5 +1,5 @@
 {
-  "name": "commit-ai",
+  "name": "@ismailalammar/commit-ai",
   "version": "1.0.0",
   "description": "CLI tool that generates git commit messages using Claude AI",
   "main": "index.js",
