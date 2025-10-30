@@ -5,16 +5,19 @@ A simple CLI tool that generates git commit messages using Claude AI.
 ## Setup
 
 1. Clone or navigate to this directory:
+
    ```bash
    cd commit-ai
    ```
 
 2. Install dependencies:
+
    ```bash
    npm install
    ```
 
 3. Create a `.env` file with your Claude API key:
+
    ```bash
    cp .env.example .env
    ```
@@ -27,11 +30,13 @@ A simple CLI tool that generates git commit messages using Claude AI.
 ## Usage
 
 1. Make your code changes and stage them:
+
    ```bash
    git add .
    ```
 
 2. Run the commit message generator:
+
    ```bash
    npm run commit
    ```
@@ -53,16 +58,19 @@ This project includes comprehensive unit and integration tests using Jest.
 ### Running Tests
 
 Run all tests:
+
 ```bash
 npm test
 ```
 
 Run tests in watch mode (useful during development):
+
 ```bash
 npm run test:watch
 ```
 
 Run tests with coverage report:
+
 ```bash
 npm run test:coverage
 ```
@@ -70,6 +78,7 @@ npm run test:coverage
 ### Test Coverage
 
 The test suite covers:
+
 - Environment variable validation
 - Git diff retrieval and error handling
 - Claude API interaction and error handling
@@ -81,6 +90,7 @@ The test suite covers:
 ### Test Structure
 
 Tests are organized in [index.test.js](index.test.js):
+
 - **Environment validation**: Checks for API key presence
 - **getStagedDiff functionality**: Tests git diff operations
 - **generateCommitMessage functionality**: Tests AI message generation
