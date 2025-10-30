@@ -64,7 +64,7 @@ describe('commit-ai CLI Tool', () => {
   });
 
   describe('generateCommitMessage functionality', () => {
-    test('should call Anthropic API with correct parameters', async () => {
+    test('should call Anthropic API with Claude Haiku model', async () => {
       const mockMessage = {
         content: [{ text: 'Add test file with console log' }]
       };
@@ -80,7 +80,7 @@ describe('commit-ai CLI Tool', () => {
       const diff = 'diff --git a/test.js b/test.js\n+console.log("test");';
 
       const result = await anthropic.messages.create({
-        model: 'claude-sonnet-4-20250514',
+        model: 'claude-3-5-haiku-20241022',
         max_tokens: 1024,
         messages: [
           {
@@ -92,7 +92,7 @@ describe('commit-ai CLI Tool', () => {
 
       expect(mockCreate).toHaveBeenCalledWith(
         expect.objectContaining({
-          model: 'claude-sonnet-4-20250514',
+          model: 'claude-3-5-haiku-20241022',
           max_tokens: 1024
         })
       );
@@ -111,11 +111,49 @@ describe('commit-ai CLI Tool', () => {
 
       await expect(
         anthropic.messages.create({
-          model: 'claude-sonnet-4-20250514',
+          model: 'claude-3-5-haiku-20241022',
           max_tokens: 1024,
           messages: [{ role: 'user', content: 'test' }]
         })
       ).rejects.toThrow('API Error');
+    });
+
+    test('should handle authentication errors', async () => {
+      const mockCreate = jest.fn().mockRejectedValue(new Error('Invalid API key'));
+      Anthropic.mockImplementation(() => ({
+        messages: {
+          create: mockCreate
+        }
+      }));
+
+      const anthropic = new Anthropic({ apiKey: 'invalid-key' });
+
+      await expect(
+        anthropic.messages.create({
+          model: 'claude-3-5-haiku-20241022',
+          max_tokens: 1024,
+          messages: [{ role: 'user', content: 'test' }]
+        })
+      ).rejects.toThrow('Invalid API key');
+    });
+
+    test('should handle rate limit errors', async () => {
+      const mockCreate = jest.fn().mockRejectedValue(new Error('Rate limit exceeded'));
+      Anthropic.mockImplementation(() => ({
+        messages: {
+          create: mockCreate
+        }
+      }));
+
+      const anthropic = new Anthropic({ apiKey: 'test-key' });
+
+      await expect(
+        anthropic.messages.create({
+          model: 'claude-3-5-haiku-20241022',
+          max_tokens: 1024,
+          messages: [{ role: 'user', content: 'test' }]
+        })
+      ).rejects.toThrow('Rate limit exceeded');
     });
 
     test('should trim whitespace from commit message', async () => {
@@ -132,12 +170,35 @@ describe('commit-ai CLI Tool', () => {
 
       const anthropic = new Anthropic({ apiKey: 'test-key' });
       const result = await anthropic.messages.create({
-        model: 'claude-sonnet-4-20250514',
+        model: 'claude-3-5-haiku-20241022',
         max_tokens: 1024,
         messages: [{ role: 'user', content: 'test' }]
       });
 
       expect(result.content[0].text.trim()).toBe('Add feature with spaces');
+    });
+  });
+
+  describe('Performance timing', () => {
+    test('should measure generation time', async () => {
+      const startTime = Date.now();
+
+      // Simulate some processing time
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+      const endTime = Date.now();
+      const duration = ((endTime - startTime) / 1000).toFixed(2);
+
+      expect(parseFloat(duration)).toBeGreaterThanOrEqual(0.1);
+      expect(duration).toMatch(/^\d+\.\d{2}$/); // Format: X.XX
+    });
+
+    test('should format timing output correctly', () => {
+      const duration = 1.67;
+      const formatted = duration.toFixed(2);
+
+      expect(formatted).toBe('1.67');
+      expect(formatted).toMatch(/^\d+\.\d{2}$/);
     });
   });
 
@@ -288,7 +349,7 @@ describe('Integration scenarios', () => {
 
     const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
     const result = await anthropic.messages.create({
-      model: 'claude-sonnet-4-20250514',
+      model: 'claude-3-5-haiku-20241022',
       max_tokens: 1024,
       messages: [{ role: 'user', content: diff }]
     });
@@ -318,7 +379,7 @@ describe('Integration scenarios', () => {
     const diff = execSync('git diff --staged', { encoding: 'utf-8' });
     const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
     const result = await anthropic.messages.create({
-      model: 'claude-sonnet-4-20250514',
+      model: 'claude-3-5-haiku-20241022',
       max_tokens: 1024,
       messages: [{ role: 'user', content: diff }]
     });
@@ -332,5 +393,26 @@ describe('Integration scenarios', () => {
 
     // Commit should not be called
     expect(execSync).toHaveBeenCalledTimes(1); // Only the diff call
+  });
+
+  test('should handle binary file changes', () => {
+    const binaryDiff = 'diff --git a/image.png b/image.png\nBinary files differ';
+    execSync.mockReturnValue(binaryDiff);
+
+    const diff = execSync('git diff --staged', { encoding: 'utf-8' });
+    expect(diff).toContain('Binary files');
+  });
+
+  test('should handle multiple file changes', () => {
+    const multiFileDiff = `diff --git a/file1.js b/file1.js
++function foo() {}
+diff --git a/file2.js b/file2.js
++function bar() {}`;
+
+    execSync.mockReturnValue(multiFileDiff);
+
+    const diff = execSync('git diff --staged', { encoding: 'utf-8' });
+    expect(diff).toContain('file1.js');
+    expect(diff).toContain('file2.js');
   });
 });
