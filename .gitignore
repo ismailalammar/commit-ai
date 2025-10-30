@@ -3,3 +3,9 @@ node_modules/
 .DS_Store
 coverage/
 *.log
+
+demo.cast
+demo.mp4
+demo.webm
+
+demo.tape

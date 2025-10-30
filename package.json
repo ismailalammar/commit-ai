@@ -3,15 +3,38 @@
   "version": "1.0.0",
   "description": "CLI tool that generates git commit messages using Claude AI",
   "main": "index.js",
+  "bin": {
+    "commit-ai": "./index.js"
+  },
   "scripts": {
     "commit": "node index.js",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
   },
-  "keywords": [],
+  "keywords": [
+    "git",
+    "commit",
+    "ai",
+    "claude",
+    "cli",
+    "automation",
+    "commit-message",
+    "anthropic"
+  ],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/commit-ai.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/commit-ai/issues"
+  },
+  "homepage": "https://github.com/yourusername/commit-ai#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "type": "commonjs",
   "dependencies": {
     "@anthropic-ai/sdk": "^0.68.0",
